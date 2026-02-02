@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>端到端加密聊天室</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <div class="container">
+    <h1>端到端加密聊天室</h1>
+    <div class="config">
+      <div class="field">
+        <label>房间ID</label>
+        <input id="roomId" placeholder="如: crypto-101">
+      </div>
+      <div class="field">
+        <label>昵称</label>
+        <input id="nickname" placeholder="你的昵称">
+      </div>
+      <div class="field">
+        <label>房间口令(本地派生密钥)</label>
+        <input id="passphrase" placeholder="共享口令(仅客户端可见)" type="password">
+      </div>
+      <div class="actions">
+        <button id="btnJoin">加入房间</button>
+        <button id="btnLeave" disabled>离开房间</button>
+      </div>
+      <div class="key-info">
+        <span>派生密钥指纹: </span>
+        <code id="keyFingerprint">未就绪</code>
+      </div>
+      <div id="errorAlert" class="error-alert" style="display:none;">
+        <div class="error-icon">⚠️</div>
+        <div class="error-content">
+          <div class="error-title">加入房间失败</div>
+          <div class="error-message" id="errorMessage"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat" id="chatSection" style="display:none;">
+      <div class="messages" id="messages"></div>
+      <div class="compose">
+        <input id="messageInput" placeholder="输入消息并回车发送">
+        <button id="btnSend">发送</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    // 若本地路径未成功提供 socket.io.js，则回退到 CDN
+    if (!window.io) {
+      var s = document.createElement('script');
+      s.src = 'https://cdn.socket.io/4.7.5/socket.io.min.js';
+      document.head.appendChild(s);
+    }
+  </script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
+
+
