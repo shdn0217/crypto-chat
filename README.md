@@ -10,7 +10,7 @@
 ## 运行（Windows + conda）
 
 ```powershell
-cd D:\密码学作业2025
+cd D:\密码学作业2025（替换成你的文件路径）
 
 conda create -n crypto-chat python=3.10 -y
 conda activate crypto-chat
